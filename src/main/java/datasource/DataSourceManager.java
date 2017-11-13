@@ -3,10 +3,15 @@ package datasource;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.sql.DataSource;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
 import java.util.Properties;
 
@@ -16,8 +21,8 @@ import java.util.Properties;
 public class DataSourceManager {
     private static String configPath = "src\\main\\resources\\datasource\\datasource.properties";
 
-    private DataSource dataSource;
-    private void setupDatasource(DataSource dataSource){
+    private static DataSource dataSource;
+    private static DataSource setupDatasource(){
         BasicDataSource basicDataSource = new BasicDataSource();
         Properties properties = readConfig();
         if (!properties.isEmpty()) {
@@ -29,22 +34,20 @@ public class DataSourceManager {
             basicDataSource.setMinIdle(Integer.parseInt(properties.getProperty(DataSourceConstants.MIN_IDLE)));
             basicDataSource.setMaxOpenPreparedStatements(Integer.parseInt(properties.getProperty(DataSourceConstants.MAX_OPEN_PREPARED_STATEMENTS)));
         }
+        return basicDataSource;
     }
 
-    public DataSource getDatasource() {
+    public static DataSource getDatasource() {
         if (dataSource != null) {
             return dataSource;
         } else {
-            setupDatasource(dataSource);
+            dataSource = setupDatasource();
             return dataSource;
         }
-
     }
 
-    private Properties readConfig() {
-
+    private static Properties readConfig() {
         Properties properties = new Properties();
-        System.out.println(new File(System.getProperty("user.dir")).getAbsolutePath() + "\\" + new File(configPath));
         try (FileInputStream inputStream = new FileInputStream(new File(System.getProperty("user.dir")).getAbsolutePath() + "\\" + new File(configPath))) {
             properties.load(inputStream);
         }catch (FileNotFoundException e) {
@@ -53,10 +56,5 @@ public class DataSourceManager {
             e.printStackTrace();
         }
         return properties;
-    }
-
-    public static void main(String[] args) {
-        DataSourceManager manager = new DataSourceManager();
-        DataSource dataSource = manager.getDatasource();
     }
 }
