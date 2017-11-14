@@ -20,7 +20,7 @@ public class DataSourceManager {
 
     private DataSource setupDatasource(){
         BasicDataSource basicDataSource = new BasicDataSource();
-        Properties properties = propertyManager.readConfig(ProjectConstants.datasourceConfigPath);
+        Properties properties = propertyManager.readConfigAsProperties(ProjectConstants.datasourceConfigPath);
         if (!properties.isEmpty()) {
             basicDataSource.setUrl(properties.getProperty(DataSourceConstants.URL));
             basicDataSource.setDriverClassName(properties.getProperty(DataSourceConstants.DRIVER));
