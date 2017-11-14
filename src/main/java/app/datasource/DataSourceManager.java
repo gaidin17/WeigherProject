@@ -1,7 +1,7 @@
 package app.datasource;
 
+import app.utils.FileManager;
 import app.utils.ProjectConstants;
-import app.utils.config.PropertyManager;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,13 +14,12 @@ import java.util.Properties;
  */
 @Component
 public class DataSourceManager {
-    @Autowired
-    private PropertyManager propertyManager;
+
     private DataSource dataSource;
 
     private DataSource setupDatasource(){
         BasicDataSource basicDataSource = new BasicDataSource();
-        Properties properties = propertyManager.readConfigAsProperties(ProjectConstants.datasourceConfigPath);
+        Properties properties = FileManager.readFileAsProperties(ProjectConstants.DATASOURCE_CONFIG_PATH);
         if (!properties.isEmpty()) {
             basicDataSource.setUrl(properties.getProperty(DataSourceConstants.URL));
             basicDataSource.setDriverClassName(properties.getProperty(DataSourceConstants.DRIVER));
