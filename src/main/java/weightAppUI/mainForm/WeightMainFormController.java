@@ -33,7 +33,8 @@ public class WeightMainFormController implements WeightMainFormInterface {
     }
 
     @Override
-    public Double measureWeight() {
+    public String measureWeight() {
+
         return null;
     }
 

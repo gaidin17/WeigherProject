@@ -1,7 +1,8 @@
 package weightAppUI.mainForm;
 
 public interface WeightMainFormInterface {
-    Double measureWeight();
+
+    String measureWeight();
 
     Boolean startMeasuring();
 
