@@ -1,62 +1,56 @@
 package app.utils.port;
 
+import app.utils.port.decoding.Decoder;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * Created by Gaidin on 12.11.2017.
  */
+@Component
 public class ComPortManager implements PortManager{
+    @Autowired
+    private Decoder decoder;
     private static SerialPort serialPort;
 
-    public ComPortManager(String portName) {
-        serialPort = new SerialPort(portName);
+    @PostConstruct
+    public void init() {
+        serialPort = new SerialPort("COM1");
         setupPort(serialPort);
     }
 
+    @SuppressWarnings("unckecked")
     public void startReadData() {
         boolean need_stop = false;
         System.out.println(serialPort.isOpened());
         while (serialPort.isOpened() && !need_stop) {
             try {
-                System.out.println(serialPort.readString());
+                System.out.println(decoder.decode(serialPort.readString()));
             } catch (SerialPortException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
     private void setupPort(SerialPort serialPort) {
         try {
-            //Открываем порт
             serialPort.openPort();
             System.out.println(serialPort.isCTS());
-            //Выставляем параметры
             serialPort.setParams(SerialPort.BAUDRATE_9600,
                     SerialPort.DATABITS_8,
                     SerialPort.STOPBITS_1,
                     SerialPort.PARITY_NONE);
-            //Включаем аппаратное управление потоком
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
                     SerialPort.FLOWCONTROL_RTSCTS_OUT);
-            //Устанавливаем ивент лисенер и маску
-            boolean need_stop = false;
-            System.out.println(serialPort.isOpened());
-            while (serialPort.isOpened() && !need_stop) {
-                System.out.println(serialPort.readString());
-
-            }
-            //Отправляем запрос устройству
         } catch (SerialPortException ex) {
-            System.out.println(ex);
+            System.out.println(ex.getMessage());
         }
-    }
-    public static void main(String[] args) {
-        ComPortManager manager = new ComPortManager("COM1");
-        manager.startReadData();
     }
 
 
@@ -66,15 +60,13 @@ public class ComPortManager implements PortManager{
             System.out.println(event);
             if (event.isRXCHAR() && event.getEventValue() > 0) {
                 try {
-                    //Получаем ответ от устройства, обрабатываем данные и т.д.
                     String data = serialPort.readString(event.getEventValue());
-
-
                 } catch (SerialPortException ex) {
                     System.out.println(ex);
                 }
             }
         }
     }
+
 }
 
