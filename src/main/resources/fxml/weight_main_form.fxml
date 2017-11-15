@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="weightAppUI.main_form.WeightMainFormController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="weightAppUI.mainForm.WeightMainFormController">
     <Button fx:id="button" layoutX="32.0" layoutY="147.0" mnemonicParsing="false" prefHeight="172.0"
             prefWidth="536.0" text="ВЗВЕСИТЬ"/>
     <Label fx:id="weightLabel" alignment="CENTER" layoutX="90.0" layoutY="20.0" prefHeight="121.0" prefWidth="421.0"

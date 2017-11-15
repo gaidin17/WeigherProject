@@ -23,7 +23,7 @@ public class WeightMainFormController implements WeightMainFormInterface {
 
     @FXML
     public void initialize() {
-        button.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) -> {
             if (!checkMeasureStatus()) {
                 startMeasuring();
             } else {
