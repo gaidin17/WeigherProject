@@ -1,4 +1,4 @@
-package app.utils.port.decoding;
+package app.utils.port.decoding.algorithm;
 
 import org.springframework.stereotype.Component;
 

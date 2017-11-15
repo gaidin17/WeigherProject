@@ -1,5 +1,6 @@
-package app.utils.port.decoding;
+package app.utils.port.decoding.decoder;
 
+import app.utils.port.decoding.algorithm.Algorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

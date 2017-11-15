@@ -1,6 +1,6 @@
 package app.utils.port;
 
-import app.utils.port.decoding.Decoder;
+import app.utils.port.decoding.decoder.Decoder;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;

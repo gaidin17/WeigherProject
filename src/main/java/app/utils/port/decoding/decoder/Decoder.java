@@ -1,4 +1,4 @@
-package app.utils.port.decoding;
+package app.utils.port.decoding.decoder;
 
 /**
  * Created by Evgeny_Akulenko on 11/14/2017.
