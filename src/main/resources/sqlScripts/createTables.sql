@@ -1,16 +1,16 @@
-CREATE TABLE organisation (
+CREATE TABLE organisations (
     id BIGSERIAL NOT NULL,
     name VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE truck (
+CREATE TABLE trucks (
     id BIGSERIAL NOT NULL,
     number VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE driver (
+CREATE TABLE drivers (
     id BIGSERIAL NOT NULL,
     number VARCHAR NOT NULL,
     PRIMARY KEY (id)
@@ -22,7 +22,7 @@ CREATE TABLE Cargo (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE weghning (
+CREATE TABLE weighning (
     id BIGSERIAL NOT NULL,
     organization_id BIGINT,
     driver_id BIGINT,
@@ -32,7 +32,7 @@ CREATE TABLE weghning (
     secondWeighing DOUBLE PRECISION,
     secondWeighingDate DOUBLE PRECISION,
     PRIMARY KEY (id),
-    FOREIGN KEY (organization_id) REFERENCES organisation(id),
-    FOREIGN KEY (driver_id) REFERENCES driver(id),
+    FOREIGN KEY (organization_id) REFERENCES organisations(id),
+    FOREIGN KEY (driver_id) REFERENCES drivers(id),
     FOREIGN KEY (cargo_id) REFERENCES cargo(id)
 );

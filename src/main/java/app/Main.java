@@ -1,5 +1,7 @@
 package app;
 
+import app.dao.impl.TruckDao;
+import app.domain.Truck;
 import app.utils.port.ComPortManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,5 +22,10 @@ public class Main {
         ComPortManager comPortManager = context.getBean(ComPortManager.class);
         initialisationServise.init();
         comPortManager.startReadData();
+
+        TruckDao truckDao = context.getBean(TruckDao.class);
+        Truck truck = new Truck();
+        truck.setNumber("dd");
+        truckDao.create(truck);
     }
 }
