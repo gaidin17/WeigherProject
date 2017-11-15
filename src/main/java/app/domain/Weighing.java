@@ -9,6 +9,7 @@ public class Weighing {
     private long id;
     private Organization organization;
     private Driver driver;
+    private Truck truck;
     private Cargo cargo;
     private Double firstWeighing;
     private Date firstWeighingDate;
@@ -21,6 +22,14 @@ public class Weighing {
 
     public void setDriver(Driver driver) {
         this.driver = driver;
+    }
+
+    public Truck getTruck() {
+        return truck;
+    }
+
+    public void setTruck(Truck truck) {
+        this.truck = truck;
     }
 
     public long getId() {

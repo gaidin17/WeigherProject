@@ -1,7 +1,9 @@
 package app.dao;
 
+import app.dao.utils.EntityBuilder;
 import app.datasource.DataSourceManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,16 +16,17 @@ import java.util.List;
  * Created by Evgeny_Akulenko on 11/15/2017.
  */
 
-public abstract class AbstractDao<T, V> implements DaoInterface<T, V> {
+public abstract class AbstractJDBCDao<T, V> implements DaoInterface<T, V> {
 	@Autowired
 	private DataSourceManager dataSourceManager;
-	private EntityBuilder<T> entityBuilder;
+	protected EntityBuilder<T> entityBuilder;
 
 	public DataSource getDataSource() {
 		return dataSourceManager.getDatasource();
 	}
 
 	@Override
+	@Transactional
 	public boolean create(T t) {
 		try (Connection connection = getDataSource().getConnection();
 				PreparedStatement statement = getCreateStatement(connection, t)) {
@@ -35,6 +38,7 @@ public abstract class AbstractDao<T, V> implements DaoInterface<T, V> {
 	}
 
 	@Override
+	@Transactional
 	public boolean update(T t) {
 		try (Connection connection = getDataSource().getConnection();
 				PreparedStatement statement = getUpdateStatement(connection, t)) {
@@ -47,6 +51,7 @@ public abstract class AbstractDao<T, V> implements DaoInterface<T, V> {
 	}
 
 	@Override
+	@Transactional
 	public T getEntityById(V v) {
 		try (Connection connection = getDataSource().getConnection();
 				PreparedStatement statement = getEntityByIdStatement(connection, v)) {
@@ -59,6 +64,7 @@ public abstract class AbstractDao<T, V> implements DaoInterface<T, V> {
 	}
 
 	@Override
+	@Transactional
 	public List<T> getAll() {
 		try (Connection connection = getDataSource().getConnection();
 				PreparedStatement statement = getGetAllStatement(connection)) {
@@ -71,6 +77,7 @@ public abstract class AbstractDao<T, V> implements DaoInterface<T, V> {
 	}
 
 	@Override
+	@Transactional
 	public boolean remove(V v) {
 		try (Connection connection = getDataSource().getConnection();
 				PreparedStatement statement = getRemoveStatement(connection, v)) {
@@ -90,4 +97,10 @@ public abstract class AbstractDao<T, V> implements DaoInterface<T, V> {
 	protected abstract PreparedStatement getGetAllStatement(Connection connection);
 
 	protected abstract PreparedStatement getEntityByIdStatement(Connection connection, V v);
+
+	protected EntityBuilder<T> getEntityBuilder() {
+		return entityBuilder;
+	}
+
+	protected abstract void setEntityBuilder(EntityBuilder<T> entityBuilder);
 }
