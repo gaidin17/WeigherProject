@@ -1,19 +1,18 @@
 package app.utils.port.decoding;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by Gaidin on 12.11.2017.
  */
 @Component
-public class ComPortDecoder implements Decoder<Double, String>{
+public class ComPortDecoder implements Decoder<Double, String> {
+	@Autowired
+	public Algorithm<Double, String> algorithm;
 
 	@Override
 	public Double decode(String string) {
-		if (string == null) {
-			return 0.0;
-		} else {
-			return 1d;
-		}
+		return algorithm.calculate(string);
 	}
 }

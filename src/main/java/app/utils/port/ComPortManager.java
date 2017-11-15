@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 @Component
 public class ComPortManager implements PortManager{
     @Autowired
-    private Decoder decoder;
+    private Decoder<Double, String> decoder;
     private static SerialPort serialPort;
 
     @PostConstruct
@@ -29,12 +29,18 @@ public class ComPortManager implements PortManager{
     public void startReadData() {
         boolean need_stop = false;
         System.out.println(serialPort.isOpened());
+        Double result = null;
         while (serialPort.isOpened() && !need_stop) {
             try {
-                System.out.println(decoder.decode(serialPort.readString()));
+                result = decoder.decode(serialPort.readString());
             } catch (SerialPortException e) {
                 e.printStackTrace();
             }
+            if (result != null) {
+                System.out.println(result);
+                need_stop = true;
+            }
+
         }
     }
 
