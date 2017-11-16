@@ -2,10 +2,11 @@ package weightAppUI.registrationForm;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
+import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.textfield.TextFields;
 
-import java.util.Arrays;
+import static java.lang.Thread.sleep;
+
 
 public class RegistrationFormController implements RegistrationFormInterface {
 
@@ -19,19 +20,22 @@ public class RegistrationFormController implements RegistrationFormInterface {
     TextField driverName;
     @FXML
     TextField truckNumber;
+    @FXML
+    Button next;
 
-
-    AutoCompletionBinding adressComplete;
 
     String[] organizations = {"ООО Рога и Копыта", "МУП Яндекс", "ЕПРСТ У Васи", "ЗАО ... в продакшн", "ПАО 40 лет без урожая"};
     String[] adreses = {"пл. Ленина", "Московский пр-т", "ул. Есенина", "пер. Трудолюбия", "1-й Пролетарский тупик"};
     String[] taxpayerIdNumbers = {"112252358", "4532443", "435245", "4358443", "2187354"};
     String[] driverNames = {"Иванов", "Петров", "Сидоров", "Асламбеков", "Овуавашва"};
     String[] truckNumbers = {"м448мм69", "а124мм69", "м573ар69", "м843нм69", "м278вк69"};
-    String[] defaultArray = {"12", "13"};
 
     @FXML
     public void initialize() {
+        next.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) -> {
+
+        });
+
         int k = 1000;
         k = k * adreses.length;
         String[] newArray = new String[k];
@@ -48,4 +52,5 @@ public class RegistrationFormController implements RegistrationFormInterface {
 
         TextFields.bindAutoCompletion(adress,"text to suggest", "another text to suggest");
     }
+
 }
