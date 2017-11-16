@@ -1,64 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weightAppUI.registrationForm.RegistrationFormController">
-   <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Номер машины">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label layoutX="14.0" layoutY="44.0" text="ФИО водителя">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label layoutX="14.0" layoutY="104.0" text="Наименование организации">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="14.0" layoutY="74.0" text="ИНН">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="14.0" layoutY="134.0" text="Адрес">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <TextField layoutX="208.0" layoutY="107.0" />
-      <TextField layoutX="208.0" layoutY="137.0" />
-      <TextField layoutX="208.0" layoutY="77.0" />
-      <TextField layoutX="208.0" layoutY="47.0" />
-      <TextField layoutX="208.0" layoutY="17.0" />
-   </children>
+<AnchorPane prefHeight="226.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weightAppUI.registrationForm.RegistrationFormController">
+   <Label layoutX="14.0" layoutY="14.0" text="Номер машины">
+      <font>
+         <Font size="14.0" />
+      </font>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+   </Label>
+   <Label layoutX="14.0" layoutY="44.0" text="ФИО водителя">
+      <font>
+         <Font size="14.0" />
+      </font>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+   </Label>
+   <Label layoutX="14.0" layoutY="104.0" text="Наименование организации">
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <Label layoutX="14.0" layoutY="74.0" text="ИНН">
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <Label layoutX="14.0" layoutY="134.0" text="Адрес">
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <TextField fx:id="organizationName" layoutX="208.0" layoutY="107.0" />
+   <TextField fx:id="adress" layoutX="208.0" layoutY="137.0" />
+   <TextField fx:id="taxpayerIdNumber" layoutX="208.0" layoutY="77.0" />
+   <TextField fx:id="driverName" layoutX="208.0" layoutY="47.0" />
+   <TextField fx:id="truckNumber" layoutX="208.0" layoutY="17.0" />
+   <Button layoutX="165.0" layoutY="187.0" mnemonicParsing="false" text="ДАЛЕЕ" />
 </AnchorPane>
