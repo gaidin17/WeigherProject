@@ -1,11 +1,17 @@
 package weightAppUI.registrationForm;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
+import weightAppUI.alerts.AppAlert;
 
 import static java.lang.Thread.sleep;
+import static javafx.scene.control.Alert.AlertType.INFORMATION;
 
 
 public class RegistrationFormController implements RegistrationFormInterface {
@@ -23,6 +29,10 @@ public class RegistrationFormController implements RegistrationFormInterface {
     @FXML
     Button next;
 
+    boolean isB = false;
+
+    AutoCompletionBinding<String> autoCompletionBinding;
+
 
     String[] organizations = {"ООО Рога и Копыта", "МУП Яндекс", "ЕПРСТ У Васи", "ЗАО ... в продакшн", "ПАО 40 лет без урожая"};
     String[] adreses = {"пл. Ленина", "Московский пр-т", "ул. Есенина", "пер. Трудолюбия", "1-й Пролетарский тупик"};
@@ -32,8 +42,9 @@ public class RegistrationFormController implements RegistrationFormInterface {
 
     @FXML
     public void initialize() {
+        runInNewThread();
         next.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) -> {
-
+            isB = true;
         });
 
         int k = 1000;
@@ -44,13 +55,60 @@ public class RegistrationFormController implements RegistrationFormInterface {
         }
 
         TextFields.bindAutoCompletion(organizationName, organizations);
-        //adressComplete = TextFields.bindAutoCompletion(adress, newArray);
         TextFields.bindAutoCompletion(taxpayerIdNumber, taxpayerIdNumbers);
         TextFields.bindAutoCompletion(driverName, driverNames);
         TextFields.bindAutoCompletion(truckNumber, truckNumbers);
-        //adressComplete.setUserInput(Arrays.toString(organizations));
+        autoCompletionBinding = TextFields.bindAutoCompletion(adress, newArray);
+        adress.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
-        TextFields.bindAutoCompletion(adress,"text to suggest", "another text to suggest");
+            }
+        });
     }
 
+
+    @Override
+    public void openWeightingForm() {
+
+    }
+
+    @Override
+    public void setRegistrationData() {
+
+    }
+
+    @Override
+    public void saveNewApplicationData() {
+
+    }
+
+    // create new thread at start, e.g. at the end for Application.start() method
+
+    void runInNewThread() {
+
+        final int[] i = {0};
+        new Thread(() -> {
+            while (!isB) {
+                try {
+                    sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                i[0]++;
+                // load my data
+                // once loaded
+                // update UI using
+                Platform.runLater(() -> {
+                    AppAlert appAlert = new AppAlert(INFORMATION, "Test information", "YESSS");
+                    appAlert.setHeaderText("TESTTTTT");
+                    appAlert.show();
+
+                    truckNumber.setText(String.valueOf(i[0]));
+                    // here goes my update on FX UI thread
+                });
+                // update is done let's look for more data
+            }
+        }).start();
+    }
 }
