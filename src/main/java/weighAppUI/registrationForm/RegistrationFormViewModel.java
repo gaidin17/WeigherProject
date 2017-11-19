@@ -1,4 +1,4 @@
-package weightAppUI.registrationForm;
+package weighAppUI.registrationForm;
 
 public class RegistrationFormViewModel {
 

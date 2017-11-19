@@ -1,7 +1,7 @@
-package weightAppUI.alerts;
+package weighAppUI.alerts;
 
 public interface AppAlertInterface {
-    void applyButtonPress();
 
+    void applyButtonPress();
     void cancelButtonPress();
 }

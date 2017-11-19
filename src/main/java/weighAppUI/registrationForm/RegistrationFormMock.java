@@ -1,4 +1,4 @@
-package weightAppUI.registrationForm;
+package weighAppUI.registrationForm;
 
 import app.domain.Cargo;
 import app.domain.Driver;

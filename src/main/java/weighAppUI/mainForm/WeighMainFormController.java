@@ -1,12 +1,13 @@
-package weightAppUI.mainForm;
+package weighAppUI.mainForm;
 
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import weighAppUI.uiBaseInterfaces.UiProgressbarInterface;
 
-public class WeightMainFormController implements WeightMainFormInterface {
+public class WeighMainFormController implements WeighMainFormInterface, UiProgressbarInterface {
 
     private boolean measureStatus;
     private String measureUnits = "кг";
@@ -18,7 +19,7 @@ public class WeightMainFormController implements WeightMainFormInterface {
     Label weightLabel;
 
     //Default constructor
-    public WeightMainFormController() {
+    public WeighMainFormController() {
     }
 
     @FXML
@@ -67,5 +68,15 @@ public class WeightMainFormController implements WeightMainFormInterface {
         sb.setLength(0);
         measureStatus = false;
         return true;
+    }
+
+    @Override
+    public void startProgressbar() {
+
+    }
+
+    @Override
+    public void stopProgressbar() {
+
     }
 }

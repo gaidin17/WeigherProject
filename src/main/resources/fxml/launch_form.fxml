@@ -3,15 +3,12 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="206.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weightAppUI.launchForm.LaunchFormController">
+<AnchorPane prefHeight="206.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weighAppUI.launchForm.LaunchFormController">
    <children>
-      <Button fx:id="newApplicatoin" layoutX="11.0" layoutY="12.0" mnemonicParsing="false" prefHeight="183.0" prefWidth="286.0" text="ЗАЯВКА">
+      <Button fx:id="application" layoutX="11.0" layoutY="12.0" mnemonicParsing="false" prefHeight="183.0" prefWidth="286.0" text="ЗАЯВКА">
          <font>
             <Font size="24.0" />
          </font>
@@ -24,7 +21,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <AnchorPane prefHeight="206.0" prefWidth="593.0">
+      <AnchorPane fx:id="progress" prefHeight="206.0" prefWidth="593.0">
          <children>
             <ProgressIndicator layoutX="230.0" layoutY="32.0" prefHeight="142.0" prefWidth="134.0" />
          </children>

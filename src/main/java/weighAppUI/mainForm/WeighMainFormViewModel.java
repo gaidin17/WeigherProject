@@ -1,6 +1,6 @@
-package weightAppUI.mainForm;
+package weighAppUI.mainForm;
 
-public class WeightMainFormViewModel {
+public class WeighMainFormViewModel {
 
     private String weightUnits;
     private String vehicleNumber;
@@ -8,7 +8,7 @@ public class WeightMainFormViewModel {
     private boolean isWeightFix;
     private boolean isSecondWeighting;
 
-    public WeightMainFormViewModel() {
+    public WeighMainFormViewModel() {
     }
 
     public String getWeightUnits() {
