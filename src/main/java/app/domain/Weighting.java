@@ -5,16 +5,16 @@ import java.util.Date;
 /**
  * Created by Gaidin on 12.11.2017.
  */
-public class Weighing {
+public class Weighting {
     private long id;
     private Organization organization;
     private Driver driver;
     private Truck truck;
     private Cargo cargo;
-    private Double firstWeighing;
-    private Date firstWeighingDate;
-    private Double secondWeighing;
-    private Date secondWeighingDate;
+    private Double firstweighting;
+    private Date firstweightingDate;
+    private Double secondweighting;
+    private Date secondweightingDate;
 
     public Driver getDriver() {
         return driver;
@@ -56,35 +56,35 @@ public class Weighing {
         this.cargo = cargo;
     }
 
-    public Double getFirstWeighing() {
-        return firstWeighing;
+    public Double getFirstweighting() {
+        return firstweighting;
     }
 
-    public void setFirstWeighing(Double firstWeighing) {
-        this.firstWeighing = firstWeighing;
+    public void setFirstweighting(Double firstweighting) {
+        this.firstweighting = firstweighting;
     }
 
-    public Date getFirstWeighingDate() {
-        return firstWeighingDate;
+    public Date getFirstweightingDate() {
+        return firstweightingDate;
     }
 
-    public void setFirstWeighingDate(Date firstWeighingDate) {
-        this.firstWeighingDate = firstWeighingDate;
+    public void setFirstweightingDate(Date firstweightingDate) {
+        this.firstweightingDate = firstweightingDate;
     }
 
-    public Double getSecondWeighing() {
-        return secondWeighing;
+    public Double getSecondweighting() {
+        return secondweighting;
     }
 
-    public void setSecondWeighing(Double secondWeighing) {
-        this.secondWeighing = secondWeighing;
+    public void setSecondweighting(Double secondweighting) {
+        this.secondweighting = secondweighting;
     }
 
-    public Date getSecondWeighingDate() {
-        return secondWeighingDate;
+    public Date getSecondweightingDate() {
+        return secondweightingDate;
     }
 
-    public void setSecondWeighingDate(Date secondWeighingDate) {
-        this.secondWeighingDate = secondWeighingDate;
+    public void setSecondweightingDate(Date secondweightingDate) {
+        this.secondweightingDate = secondweightingDate;
     }
 }

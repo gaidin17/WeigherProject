@@ -21,7 +21,7 @@ public abstract class AbstractJDBCDao<T, V> implements DaoInterface<T, V> {
 	private DataSourceManager dataSourceManager;
 	protected EntityBuilder<T> entityBuilder;
 
-	public DataSource getDataSource() {
+	private DataSource getDataSource() {
 		return dataSourceManager.getDatasource();
 	}
 
