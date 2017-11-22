@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Gaidin on 12.11.2017.
  */
 
-@Component
+@Component("OrganizationDaoStub")
 public class OrganizationDaoStubImpl implements OrganizationDao {
 	@Autowired
 	StubDaoIdGenerator idGenerator;
