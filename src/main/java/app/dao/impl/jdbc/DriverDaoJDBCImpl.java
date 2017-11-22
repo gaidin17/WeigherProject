@@ -1,4 +1,4 @@
-package app.dao.impl;
+package app.dao.impl.jdbc;
 
 import app.dao.AbstractJDBCDao;
 import app.dao.DriverDao;
