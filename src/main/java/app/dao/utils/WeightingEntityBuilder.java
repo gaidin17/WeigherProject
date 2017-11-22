@@ -1,5 +1,6 @@
 package app.dao.utils;
 
+import app.dao.AbstractJDBCDao;
 import app.dao.DaoInterface;
 import app.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +27,16 @@ public class WeightingEntityBuilder implements EntityBuilder<Weighting> {
     private static final String SECOND_weighting_DATE = "secondweightingDate";
 
     @Autowired
-    private DaoInterface<? extends Organization, Long> organizationDao;
+    private AbstractJDBCDao<? extends Organization, Long> organizationDao;
 
     @Autowired
-    private DaoInterface<? extends Driver, Long> driverDao;
+    private AbstractJDBCDao<? extends Driver, Long> driverDao;
 
     @Autowired
-    private DaoInterface<? extends Truck, Long> truckDao;
+    private AbstractJDBCDao<? extends Truck, Long> truckDao;
 
     @Autowired
-    private DaoInterface<? extends Cargo, Long> cargoDao;
+    private AbstractJDBCDao<? extends Cargo, Long> cargoDao;
 
     @Override
     public Weighting buildSingleEntity(ResultSet resultSet) throws SQLException {
