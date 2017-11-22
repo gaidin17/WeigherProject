@@ -3,6 +3,7 @@ package app.service;
 import app.dao.DriverDao;
 import app.domain.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @Component
 public class DriverService {
 	@Autowired
+	@Qualifier("DriverDaoStub")
 	private DriverDao driverDao;
 
 	public Driver getDriverById(Long id) {
