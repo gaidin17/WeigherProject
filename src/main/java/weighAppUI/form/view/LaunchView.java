@@ -1,4 +1,4 @@
-package weighAppUI.launchForm;
+package weighAppUI.form.view;
 
 
 import javafx.fxml.FXML;
@@ -10,10 +10,11 @@ import javafx.scene.layout.AnchorPane;
 import weighAppUI.alerts.AppAlert;
 import weighAppUI.alerts.AppAlertInterface;
 import weighAppUI.base.BaseForm;
-import weighAppUI.uiBaseInterfaces.UiProgressbarInterface;
+import weighAppUI.base.UIProgressbarInterface;
+import weighAppUI.form.formInterface.LaunchViewInterface;
 
 
-public class LaunchFormController extends BaseForm implements LaunchFormInterface, UiProgressbarInterface, AppAlertInterface {
+public class LaunchView extends BaseForm implements LaunchViewInterface, UIProgressbarInterface, AppAlertInterface {
 
     @FXML
     public Button application;
@@ -63,7 +64,7 @@ public class LaunchFormController extends BaseForm implements LaunchFormInterfac
     @Override
     public void applyButtonPress() {
         if (isApplicationButtonPress) {
-            openNewForm(application, "/fxml/registration_form.fxml", "", null, null, false);
+            openNewForm(application, "/fxml/registration.fxml", "", null, null, false);
         }
         if (isReportButtonPress) {
             System.out.println("report button was pressed"); //TODO add realization if report creation enable

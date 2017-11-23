@@ -1,6 +1,6 @@
-package weighAppUI.mainForm;
+package weighAppUI.form.formInterface;
 
-public interface WeighMainFormInterface {
+public interface WeighingInterface {
 
     String measureWeight();
 

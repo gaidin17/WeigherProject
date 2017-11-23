@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BaseForm {
+public abstract class BaseForm implements UIProgressbarInterface {
 
     public void openNewForm(Node node, String fxmlFile, String title, Double width, Double height, Boolean isLastFormClose) {
         Parent root;

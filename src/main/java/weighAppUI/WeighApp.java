@@ -14,7 +14,7 @@ public class WeighApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String fxmlFile = "/fxml/launch_form.fxml";
+        String fxmlFile = "/fxml/launch.fxml";
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = loader.load(getClass().getResourceAsStream(fxmlFile));
         primaryStage.setTitle("СТАРТОВЫЙ ЭКРАН");

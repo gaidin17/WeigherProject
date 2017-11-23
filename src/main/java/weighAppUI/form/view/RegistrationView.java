@@ -1,9 +1,7 @@
-package weighAppUI.registrationForm;
+package weighAppUI.form.view;
 
-import app.domain.Weighing;
+
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,22 +10,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
-import weighAppUI.alerts.AppAlert;
 import weighAppUI.alerts.AppAlertInterface;
-import weighAppUI.launchForm.LaunchFormController;
-import weighAppUI.uiBaseInterfaces.UiProgressbarInterface;
+import weighAppUI.base.BaseForm;
+import weighAppUI.form.formInterface.RegistrationInterface;
+import weighAppUI.form.viewModel.WeighingViewModel;
 
 import java.io.IOException;
 
 import static java.lang.Thread.sleep;
-import static javafx.scene.control.Alert.AlertType.INFORMATION;
 
 
-public class RegistrationFormController implements RegistrationFormInterface, UiProgressbarInterface, AppAlertInterface {
+public class RegistrationView extends BaseForm implements RegistrationInterface, AppAlertInterface {
 
     @FXML
     TextField organizationName;
@@ -67,7 +63,7 @@ public class RegistrationFormController implements RegistrationFormInterface, Ui
             public void handle(ActionEvent event) {
                 Parent root;
                 try {
-                    String fxmlFile = "/fxml/weigh_main_form.fxml";
+                    String fxmlFile = "/fxml/weighing.fxml";
                     FXMLLoader loader = new FXMLLoader();
                     root = loader.load(getClass().getResourceAsStream(fxmlFile));
                     Stage stage = new Stage();
@@ -95,11 +91,8 @@ public class RegistrationFormController implements RegistrationFormInterface, Ui
         TextFields.bindAutoCompletion(truckNumber, truckNumbers);
         autoCompletionBinding = TextFields.bindAutoCompletion(adress, newArray);
         autoCompletionBinding.setVisibleRowCount(10);
-        adress.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        adress.textProperty().addListener((observable, oldValue, newValue) -> {
 
-            }
         });
     }
 
@@ -110,17 +103,18 @@ public class RegistrationFormController implements RegistrationFormInterface, Ui
     }
 
     @Override
-    public void sendNewApplicationDataToDB() {
+    public void registerNewApplicationData() {
+
+    }
+
+
+    @Override
+    public void successResponse(WeighingViewModel weighingViewModel) {
 
     }
 
     @Override
-    public void successResponceFromDB(Weighing weighing) {
-
-    }
-
-    @Override
-    public void errorResponceFromDB(String error) {
+    public void errorResponse(String error) {
 
     }
 
@@ -144,7 +138,7 @@ public class RegistrationFormController implements RegistrationFormInterface, Ui
                 // once loaded
                 // update UI using
                 Platform.runLater(() -> {
-                    // AppAlert appAlert = new AppAlert(INFORMATION, "Test information", "YESSS", (LaunchFormController) this);
+                    // AppAlert appAlert = new AppAlert(INFORMATION, "Test information", "YESSS", (LaunchView) this);
                     //  appAlert.setHeaderText("TESTTTTT");
                     // appAlert.show();
 

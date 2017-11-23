@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weighAppUI.mainForm.WeighMainFormController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weighAppUI.form.view.WeighingView">
     <Button fx:id="button" defaultButton="true" layoutX="32.0" layoutY="147.0" mnemonicParsing="false" prefHeight="172.0" prefWidth="536.0" text="ВЗВЕСИТЬ" textAlignment="RIGHT" />
     <Label fx:id="weightLabel" alignment="CENTER" layoutX="32.0" layoutY="14.0" prefHeight="121.0" prefWidth="421.0" text=" 555 кг" textAlignment="CENTER">
         <font>
@@ -26,7 +26,7 @@
             <stops>
                <Stop color="#2bb940" />
                <Stop color="#29ff00" offset="1.0" />
-            </stops>48
+            </stops>
          </RadialGradient>
       </fill>
       <stroke>
