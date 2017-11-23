@@ -45,6 +45,7 @@ public class LaunchView extends BaseForm implements LaunchViewInterface, UIProgr
     @Override
     public void stopProgressbar() {
         progress.setVisible(false);
+        setDefaultValue();
     }
 
     @Override
@@ -69,13 +70,16 @@ public class LaunchView extends BaseForm implements LaunchViewInterface, UIProgr
         if (isReportButtonPress) {
             System.out.println("report button was pressed"); //TODO add realization if report creation enable
         }
-        isReportButtonPress = false;
-        isApplicationButtonPress = false;
         stopProgressbar();
     }
 
     @Override
     public void cancelButtonPress() {
         stopProgressbar();
+    }
+
+    private void setDefaultValue(){
+        isReportButtonPress = false;
+        isApplicationButtonPress = false;
     }
 }

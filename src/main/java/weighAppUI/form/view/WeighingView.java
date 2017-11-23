@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import weighAppUI.base.BaseForm;
 import weighAppUI.form.formInterface.WeighingInterface;
 
@@ -18,6 +19,10 @@ public class WeighingView extends BaseForm implements WeighingInterface {
     Button button;
     @FXML
     Label weightLabel;
+    @FXML
+    public Label truckNumber;
+    @FXML
+    public Circle indicator;
 
     //Default constructor
     public WeighingView() {

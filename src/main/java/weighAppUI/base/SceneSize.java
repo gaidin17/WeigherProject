@@ -3,13 +3,13 @@ package weighAppUI.base;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class SceneSize {
+class SceneSize {
 
-    private Double width = 500d;
-    private Double height = 500d;
+    private Double width = 1000d;
+    private Double height = 1000d;
     private Parent root;
 
-    public SceneSize(Parent root, Double width, Double height) {
+    SceneSize(Parent root, Double width, Double height) {
         if (width != null) {
             this.width = width;
         }
@@ -19,7 +19,7 @@ public class SceneSize {
         this.root = root;
     }
 
-    public Scene createNewScene() {
+    Scene createNewScene() {
         return new Scene(root, width, height);
     }
 }

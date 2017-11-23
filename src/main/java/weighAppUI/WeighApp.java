@@ -1,10 +1,14 @@
 package weighAppUI;
 
+import app.Main;
+import app.utils.initialization.InitialisationServise;
+import app.utils.port.ComPortManager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import weighAppUI.base.BaseForm;
+import weighAppUI.form.controller.LaunchController;
 
 public class WeighApp extends Application {
 
@@ -14,12 +18,12 @@ public class WeighApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String fxmlFile = "/fxml/launch.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        Parent rootNode = loader.load(getClass().getResourceAsStream(fxmlFile));
-        primaryStage.setTitle("СТАРТОВЫЙ ЭКРАН");
-        primaryStage.setScene(new Scene(rootNode));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+        ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
+        InitialisationServise initialisationServise = context.getBean(InitialisationServise.class);
+        ComPortManager comPortManager = context.getBean(ComPortManager.class);
+        comPortManager.startReadData();
+        initialisationServise.init();
+        LaunchController launchController = new LaunchController();
+        ((BaseForm) launchController.getLaunchViewInterface()).openNewForm(null, "/fxml/launch.fxml", "Start screen", null, null, false);
     }
 }
