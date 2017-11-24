@@ -1,4 +1,4 @@
-package weighAppUI.form.view;
+package app.weighAppUI.form.view;
 
 
 import javafx.fxml.FXML;
@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
-import weighAppUI.base.BaseForm;
-import weighAppUI.form.formInterface.WeighingInterface;
+import app.weighAppUI.base.BaseForm;
+import app.weighAppUI.form.formInterface.WeighingInterface;
 
 public class WeighingView extends BaseForm implements WeighingInterface {
 

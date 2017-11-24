@@ -1,4 +1,4 @@
-package weighAppUI.form.view;
+package app.weighAppUI.form.view;
 
 
 import javafx.fxml.FXML;
@@ -7,11 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.layout.AnchorPane;
-import weighAppUI.alerts.AppAlert;
-import weighAppUI.alerts.AppAlertInterface;
-import weighAppUI.base.BaseForm;
-import weighAppUI.base.UIProgressbarInterface;
-import weighAppUI.form.formInterface.LaunchViewInterface;
+import app.weighAppUI.alerts.AppAlert;
+import app.weighAppUI.alerts.AppAlertInterface;
+import app.weighAppUI.base.BaseForm;
+import app.weighAppUI.base.UIProgressbarInterface;
+import app.weighAppUI.form.formInterface.LaunchViewInterface;
 
 
 public class LaunchView extends BaseForm implements LaunchViewInterface, UIProgressbarInterface, AppAlertInterface {

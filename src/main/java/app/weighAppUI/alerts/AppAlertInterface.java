@@ -1,4 +1,4 @@
-package weighAppUI.alerts;
+package app.weighAppUI.alerts;
 
 public interface AppAlertInterface {
 

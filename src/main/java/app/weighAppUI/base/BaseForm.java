@@ -1,4 +1,4 @@
-package weighAppUI.base;
+package app.weighAppUI.base;
 
 import javafx.fxml.FXMLLoader;
 
@@ -24,6 +24,7 @@ public abstract class BaseForm implements UIProgressbarInterface {
             } else {
                 stage.setScene(new Scene(root));
             }
+
             stage.show();
             if (isLastFormClose) {
                 (node.getScene().getWindow()).hide();

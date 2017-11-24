@@ -1,4 +1,4 @@
-package weighAppUI.mock;
+package app.weighAppUI.mock;
 
 public class WeighingMock {
 }

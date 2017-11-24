@@ -1,4 +1,4 @@
-package weighAppUI.base;
+package app.weighAppUI.base;
 
 public interface UIProgressbarInterface {
     void startProgressbar();

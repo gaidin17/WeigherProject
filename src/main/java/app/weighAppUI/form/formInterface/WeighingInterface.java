@@ -1,4 +1,4 @@
-package weighAppUI.form.formInterface;
+package app.weighAppUI.form.formInterface;
 
 public interface WeighingInterface {
 

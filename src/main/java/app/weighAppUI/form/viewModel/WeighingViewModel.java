@@ -1,4 +1,4 @@
-package weighAppUI.form.viewModel;
+package app.weighAppUI.form.viewModel;
 
 public class WeighingViewModel {
 

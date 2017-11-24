@@ -1,4 +1,4 @@
-package weighAppUI.alerts;
+package app.weighAppUI.alerts;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;

@@ -1,6 +1,7 @@
-package weighAppUI.form.view;
+package app.weighAppUI.form.view;
 
 
+import app.weighAppUI.form.controller.RegistrationController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,16 +14,17 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
-import weighAppUI.alerts.AppAlertInterface;
-import weighAppUI.base.BaseForm;
-import weighAppUI.form.formInterface.RegistrationInterface;
-import weighAppUI.form.viewModel.WeighingViewModel;
+import app.weighAppUI.alerts.AppAlertInterface;
+import app.weighAppUI.base.BaseForm;
+import app.weighAppUI.form.formInterface.RegistrationInterface;
+import app.weighAppUI.form.viewModel.WeighingViewModel;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 import static java.lang.Thread.sleep;
 
-
+@Component
 public class RegistrationView extends BaseForm implements RegistrationInterface, AppAlertInterface {
 
     @FXML
@@ -44,11 +46,15 @@ public class RegistrationView extends BaseForm implements RegistrationInterface,
     private AutoCompletionBinding<String> autoCompletionBinding;
 
 
-    String[] organizations = {"ООО Рога и Копыта", "МУП Яндекс", "ЕПРСТ У Васи", "ЗАО ... в продакшн", "ПАО 40 лет без урожая"};
-    String[] adreses = {"пл. Ленина", "Московский пр-т", "ул. Есенина", "пер. Трудолюбия", "1-й Пролетарский тупик"};
-    String[] taxpayerIdNumbers = {"112252358", "4532443", "435245", "4358443", "2187354"};
-    String[] driverNames = {"Иванов", "Петров", "Сидоров", "Асламбеков", "Овуавашва"};
-    String[] truckNumbers = {"м448мм69", "а124мм69", "м573ар69", "м843нм69", "м278вк69"};
+  /* public RegistrationView(RegistrationController registrationController) {
+        this.registrationController = registrationController;
+    }*/
+
+    String[] organizations;// = {"ООО Рога и Копыта", "МУП Яндекс", "ЕПРСТ У Васи", "ЗАО ... в продакшн", "ПАО 40 лет без урожая"};
+    String[] adreses;// = {"пл. Ленина", "Московский пр-т", "ул. Есенина", "пер. Трудолюбия", "1-й Пролетарский тупик"};
+    String[] taxpayerIdNumbers;// = {"112252358", "4532443", "435245", "4358443", "2187354"};
+    String[] driverNames;//= {"Иванов", "Петров", "Сидоров", "Асламбеков", "Овуавашва"};
+    String[] truckNumbers;// = {"м448мм69", "а124мм69", "м573ар69", "м843нм69", "м278вк69"};
 
 
     @FXML
@@ -58,6 +64,8 @@ public class RegistrationView extends BaseForm implements RegistrationInterface,
             isWeighingStart = true;
 
         });*/
+
+        //TextFields.bindAutoCompletion(organizationName, this.organizations);
 
         next.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -78,24 +86,36 @@ public class RegistrationView extends BaseForm implements RegistrationInterface,
             }
         });
 
-        int k = 1000;
-        k = k * adreses.length;
-        String[] newArray = new String[k];
-        for (int i = 0; i < k; i++) {
-            newArray[i] = adreses[(int) (Math.random() * adreses.length)];
-        }
+//        int k = 1000;
+//        k = k * adreses.length;
+//        String[] newArray = new String[k];
+//        for (int i = 0; i < k; i++) {
+//            newArray[i] = adreses[(int) (Math.random() * adreses.length)];
+//        }
 
-        TextFields.bindAutoCompletion(organizationName, organizations);
-        TextFields.bindAutoCompletion(taxpayerIdNumber, taxpayerIdNumbers);
-        TextFields.bindAutoCompletion(driverName, driverNames);
-        TextFields.bindAutoCompletion(truckNumber, truckNumbers);
-        autoCompletionBinding = TextFields.bindAutoCompletion(adress, newArray);
-        autoCompletionBinding.setVisibleRowCount(10);
+
         adress.textProperty().addListener((observable, oldValue, newValue) -> {
 
         });
+        //registrationController.initial();
     }
 
+
+    @Override
+    public void init(String[] adreses, String[] organizations, String[] taxpayerIdNumbers, String[] driverNames, String[] truckNumbers) {
+        this.organizations = organizations;
+        this.taxpayerIdNumbers = taxpayerIdNumbers;
+        this.driverNames = driverNames;
+        this.adreses = adreses;
+        this.truckNumbers = truckNumbers;
+
+        TextFields.bindAutoCompletion(organizationName, this.organizations);
+        TextFields.bindAutoCompletion(taxpayerIdNumber, this.taxpayerIdNumbers);
+        TextFields.bindAutoCompletion(driverName, this.driverNames);
+        TextFields.bindAutoCompletion(truckNumber, this.truckNumbers);
+        autoCompletionBinding = TextFields.bindAutoCompletion(adress, this.adreses);
+        autoCompletionBinding.setVisibleRowCount(10);
+    }
 
     @Override
     public void setRegistrationData() {
@@ -169,4 +189,5 @@ public class RegistrationView extends BaseForm implements RegistrationInterface,
     public void cancelButtonPress() {
 
     }
+
 }

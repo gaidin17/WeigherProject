@@ -1,4 +1,4 @@
-package weighAppUI.base;
+package app.weighAppUI.base;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
