@@ -12,11 +12,20 @@ import java.io.IOException;
 public abstract class BaseForm implements UIProgressbarInterface {
 
 
-    public void openNewForm(Node node, String fxmlFile, String title, Double width, Double height, Boolean isLastFormClose) {
+    public void openNewForm(Node node,
+                            String fxmlFile,
+                            String title,
+                            Double width,
+                            Double height,
+                            Boolean isLastFormClose) {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader();
+            loader.setController(this);
             root = loader.load(getClass().getResourceAsStream(fxmlFile));
+            System.out.println(loader.getController().hashCode());
+            root.autosize();
+            System.out.println(loader.getController().hashCode());
             Stage stage = new Stage();
             stage.setTitle(title);
             if (height != null && width != null) {
@@ -24,7 +33,6 @@ public abstract class BaseForm implements UIProgressbarInterface {
             } else {
                 stage.setScene(new Scene(root));
             }
-
             stage.show();
             if (isLastFormClose) {
                 (node.getScene().getWindow()).hide();

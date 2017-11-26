@@ -1,39 +1,38 @@
 package app.weighAppUI.form.controller;
 
+import app.domain.Driver;
 import app.domain.Organization;
+import app.domain.Truck;
 import app.service.DriverService;
 import app.service.OrganizationService;
 import app.service.TruckService;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import app.weighAppUI.form.viewModel.WeighingViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import app.weighAppUI.form.formInterface.RegistrationInterface;
 import app.weighAppUI.form.view.RegistrationView;
-import org.springframework.util.CollectionUtils;
 
-import javax.annotation.PostConstruct;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class RegistrationController {
+public class RegistrationController  implements  RegistrationInterface{
 
     @Autowired
+    private
     OrganizationService organizationService;
 
     @Autowired
+    private
     TruckService truckService;
 
     @Autowired
+    private
     DriverService driverService;
 
-    List<Organization> organizationsDB = new ArrayList<>();
+    private List<Organization> organizationsDB = new ArrayList<>();
+    private List<Truck> trucksDB = new ArrayList<>();
+    private List<Driver> driversDB = new ArrayList<>();
 
     public RegistrationInterface getRegistrationInterface() {
         return registrationInterface;
@@ -42,14 +41,14 @@ public class RegistrationController {
     public void setRegistrationInterface(RegistrationInterface registrationInterface) {
         this.registrationInterface = registrationInterface;
     }
-    @Autowired
-    RegistrationInterface registrationInterface;
 
-    String[] organizations;// = {"ООО Рога и Копыта", "МУП Яндекс", "ЕПРСТ У Васи", "ЗАО ... в продакшн", "ПАО 40 лет без урожая"};
-    String[] adreses;// = {"пл. Ленина", "Московский пр-т", "ул. Есенина", "пер. Трудолюбия", "1-й Пролетарский тупик"};
-    String[] taxpayerIdNumbers; // = {"112252358", "4532443", "435245", "4358443", "2187354"};
-    String[] driverNames; // = {"Иванов", "Петров", "Сидоров", "Асламбеков", "Овуавашва"};
-    String[] truckNumbers; // = {"м448мм69", "а124мм69", "м573ар69", "м843нм69", "м278вк69"};
+    private RegistrationInterface registrationInterface = new RegistrationView();
+
+    private String[] organizations;// = {"ООО Рога и Копыта", "МУП Яндекс", "ЕПРСТ У Васи", "ЗАО ... в продакшн", "ПАО 40 лет без урожая"};
+    private String[] adreses;// = {"пл. Ленина", "Московский пр-т", "ул. Есенина", "пер. Трудолюбия", "1-й Пролетарский тупик"};
+    private String[] taxpayerIdNumbers; // = {"112252358", "4532443", "435245", "4358443", "2187354"};
+    private String[] driverNames; // = {"Иванов", "Петров", "Сидоров", "Асламбеков", "Овуавашва"};
+    private String[] truckNumbers; // = {"м448мм69", "а124мм69", "м573ар69", "м843нм69", "м278вк69"};
 
 
     public void init() {
@@ -63,32 +62,63 @@ public class RegistrationController {
             address.add(organization.getAddress());
         }
 
+        ArrayList<String> tracksNum = new ArrayList<>();
+        trucksDB = truckService.getAll();
+        for (Truck truck : trucksDB) {
+            tracksNum.add(truck.getNumber());
+        }
+
+        ArrayList<String> driversNames = new ArrayList<>();
+        driversDB = driverService.getAll();
+        for (Driver driver : driversDB) {
+            driversNames.add(driver.getName());
+        }
+
         int size = organizationsDB.size();
         organizations = new String[size];
         adreses = new String[size];
         taxpayerIdNumbers = new String[size];
+        driverNames = new String[driversNames.size()];
+        truckNumbers = new String[tracksNum.size()];
+
+        driversNames.toArray(driverNames);
+        tracksNum.toArray(truckNumbers);
         names.toArray(organizations);
         address.toArray(adreses);
         taxpayerId.toArray(taxpayerIdNumbers);
 
-        Parent root;
-        try {
-            String fxmlFile = "/fxml/registration.fxml";
-            FXMLLoader loader = new FXMLLoader();
-            root = loader.load(getClass().getResourceAsStream(fxmlFile));
-            Stage stage = new Stage();
-            stage.setTitle("My New Stage Title");
-            stage.setScene(new Scene(root, 450, 450));
-            stage.show();
-            // Hide this current window (if this is what you want)
-            //((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void initial() {
-        registrationInterface.init(adreses, organizations, taxpayerIdNumbers, driverNames, truckNumbers);
+        registrationInterface.init(adreses,
+                organizations,
+                taxpayerIdNumbers,
+                driverNames,
+                truckNumbers);
+    }
+
+    @Override
+    public void init(String[] adreses, String[] organizations, String[] taxpayerIdNumbers, String[] driverNames, String[] truckNumbers) {
+
+    }
+
+    @Override
+    public void setRegistrationData() {
+
+    }
+
+    @Override
+    public void registerNewApplicationData() {
+
+    }
+
+    @Override
+    public void successResponse(WeighingViewModel weighingViewModel) {
+
+    }
+
+    @Override
+    public void errorResponse(String error) {
+
     }
 }
